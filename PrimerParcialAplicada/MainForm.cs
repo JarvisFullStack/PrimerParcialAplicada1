@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrimerParcialAplicada.UI.Registros;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,13 @@ namespace PrimerParcialAplicada
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void registroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rRegistro registro = new rRegistro();
+            registro.MdiParent = this;
+            registro.Show();
         }
     }
 }
