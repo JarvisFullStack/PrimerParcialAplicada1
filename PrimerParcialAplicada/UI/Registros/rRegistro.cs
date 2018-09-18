@@ -104,7 +104,15 @@ namespace PrimerParcialAplicada.UI.Registros
             if (ValidarGuardar())
             {
                 Vendedor vendedor = LlenarClase();
+                vendedor.Fecha = DateTime.Now.Date;
                 int id = (int)VendedorIdnumericUpDown1.Value;
+
+                double sueldo = Convert.ToDouble(SueldotextBox.Value);
+                double porciento = Convert.ToDouble(PorcientotextBox.Value);
+                porciento /= 100;
+                double retencion = (sueldo * porciento);
+                RetenciontextBox.Text = Convert.ToString(retencion);
+
                 if (id == 0)
                 {
                     paso = VendedorBLL.Guardar(vendedor);

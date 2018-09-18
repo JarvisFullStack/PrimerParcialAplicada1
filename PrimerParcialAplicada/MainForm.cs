@@ -1,4 +1,5 @@
-﻿using PrimerParcialAplicada.UI.Registros;
+﻿using PrimerParcialAplicada.UI.Consultas;
+using PrimerParcialAplicada.UI.Registros;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,13 @@ namespace PrimerParcialAplicada
             rRegistro registro = new rRegistro();
             registro.MdiParent = this;
             registro.Show();
+        }
+
+        private void vendedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cVendedor ConsultaVendedor = new cVendedor();
+            ConsultaVendedor.MdiParent = this;
+            ConsultaVendedor.Show();
         }
     }
 }

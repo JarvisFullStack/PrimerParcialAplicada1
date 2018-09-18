@@ -277,7 +277,7 @@
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.groupBox1);
             this.Name = "rRegistro";
-            this.Text = "rRegistro";
+            this.Text = "Registro";
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.VendedorIdnumericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NombreserrorProvider)).EndInit();

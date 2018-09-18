@@ -15,6 +15,7 @@ namespace PrimerParcialAplicada.Entidades
         public double Sueldo { get; set; }
         public double Retencion { get; set; }
         public double Porciento { get; set; }
+        public DateTime Fecha { get; set; }
 
         public Vendedor()
         {
@@ -23,16 +24,19 @@ namespace PrimerParcialAplicada.Entidades
             Sueldo = 0;
             Retencion = 0;
             Porciento = 0;
+            Fecha = DateTime.Now.Date;
 
         }
 
-        public Vendedor(int vendedorId, string nombres, double sueldo, double retencion, double porciento)
+        public Vendedor(int vendedorId, string nombres, double sueldo, double retencion, double porciento, DateTime fecha)
         {
             VendedorId = vendedorId;
             Nombres = nombres;
             Sueldo = sueldo;
             Retencion = retencion;
             Porciento = porciento;
+            Fecha = fecha;
+            
         }
     }
 }
