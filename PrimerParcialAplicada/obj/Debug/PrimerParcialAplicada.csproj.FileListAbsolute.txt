@@ -15,3 +15,4 @@ C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\
 C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\Debug\PrimerParcialAplicada.csproj.CopyComplete
 C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\Debug\PrimerParcialAplicada.exe
 C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\Debug\PrimerParcialAplicada.pdb
+C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\Debug\PrimerParcialAplicada.UI.Registros.rMeta.resources

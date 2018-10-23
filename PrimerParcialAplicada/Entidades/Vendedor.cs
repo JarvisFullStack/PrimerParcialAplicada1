@@ -17,6 +17,8 @@ namespace PrimerParcialAplicada.Entidades
         public double Porciento { get; set; }
         public DateTime Fecha { get; set; }
 
+        public List<MetaDetalle> Detalles;
+
         public Vendedor()
         {
             VendedorId = 0;
@@ -25,6 +27,8 @@ namespace PrimerParcialAplicada.Entidades
             Retencion = 0;
             Porciento = 0;
             Fecha = DateTime.Now.Date;
+
+            Detalles = new List<MetaDetalle>();
 
         }
 

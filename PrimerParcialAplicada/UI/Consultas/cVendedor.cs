@@ -28,13 +28,13 @@ namespace PrimerParcialAplicada.UI.Consultas
         {
             //Lista de vendedores
             var lista = new List<Vendedor>();
-
-            if(CriterioTextBox.Text.Trim().Length > 0)
+            RepositorioBase<Vendedor> repositorio = new RepositorioBase<Vendedor>();
+            if (CriterioTextBox.Text.Trim().Length > 0)
             {
                 switch (FiltroComboBox.SelectedIndex)
                 {
                     case 0://todos
-                        lista = VendedorBLL.GetList(x=>true);
+                        lista = repositorio.GetList(x=>true);
                         break;
                     case 1://ID
 
@@ -42,20 +42,20 @@ namespace PrimerParcialAplicada.UI.Consultas
                         try
                         {
                              id = Convert.ToInt32(CriterioTextBox.Text);
-                            lista = VendedorBLL.GetList(x => x.VendedorId == id);
+                            lista = repositorio.GetList(x => x.VendedorId == id);
                         }
                         catch (FormatException) { MessageBox.Show("Introduzca un criterio valido en base al filtro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                         
                         break;
                     case 2://Nombres
-                        lista = VendedorBLL.GetList(x => x.Nombres.Contains(CriterioTextBox.Text));
+                        lista = repositorio.GetList(x => x.Nombres.Contains(CriterioTextBox.Text));
                         break;
                     case 3://Sueldo
                         Double sueldo = 0.0;
                         try
                         {
                             sueldo = Convert.ToDouble(CriterioTextBox.Text);                           
-                            lista = VendedorBLL.GetList(x => x.Sueldo == sueldo);
+                            lista = repositorio.GetList(x => x.Sueldo == sueldo);
                         }
                         catch (FormatException) { MessageBox.Show("Introduzca un criterio valido en base al filtro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); }                        
                         break;
@@ -64,7 +64,7 @@ namespace PrimerParcialAplicada.UI.Consultas
                         try
                         {
                             retencion = Convert.ToDouble(CriterioTextBox.Text);
-                            lista = VendedorBLL.GetList(x => x.Retencion == retencion);                        
+                            lista = repositorio.GetList(x => x.Retencion == retencion);                        
                         }
                         catch (FormatException) { MessageBox.Show("Introduzca un criterio valido en base al filtro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                         
@@ -74,7 +74,7 @@ namespace PrimerParcialAplicada.UI.Consultas
                         try
                         {
                             porciento = Convert.ToDouble(CriterioTextBox.Text);
-                            lista = VendedorBLL.GetList(x => x.Porciento == porciento);
+                            lista = repositorio.GetList(x => x.Porciento == porciento);
                         }
                         catch (FormatException) { MessageBox.Show("Introduzca un criterio valido en base al filtro", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning); }                        
                         break;
@@ -84,7 +84,7 @@ namespace PrimerParcialAplicada.UI.Consultas
             }
             else
             {
-                lista = VendedorBLL.GetList(x=>true);
+                lista = repositorio.GetList(x=>true);
             }
 
             vendedorBindingSource.DataSource = null;

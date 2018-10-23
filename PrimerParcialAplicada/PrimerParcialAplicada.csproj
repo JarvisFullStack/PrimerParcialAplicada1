@@ -53,8 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\IRepository.cs" />
+    <Compile Include="BLL\MetaBLL.cs" />
+    <Compile Include="BLL\RepositorioBase.cs" />
     <Compile Include="BLL\VendedorBLL.cs" />
+    <Compile Include="BLL\VendedorRepositorio.cs" />
     <Compile Include="DAL\Contexto.cs" />
+    <Compile Include="Entidades\Meta.cs" />
+    <Compile Include="Entidades\MetaDetalle.cs" />
     <Compile Include="Entidades\Vendedor.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -69,6 +75,12 @@
     </Compile>
     <Compile Include="UI\Consultas\cVendedor.Designer.cs">
       <DependentUpon>cVendedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registros\rMeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registros\rMeta.Designer.cs">
+      <DependentUpon>rMeta.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Registros\rRegistro.cs">
       <SubType>Form</SubType>
@@ -91,6 +103,9 @@
     </Compile>
     <EmbeddedResource Include="UI\Consultas\cVendedor.resx">
       <DependentUpon>cVendedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registros\rMeta.resx">
+      <DependentUpon>rMeta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Registros\rRegistro.resx">
       <DependentUpon>rRegistro.cs</DependentUpon>

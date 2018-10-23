@@ -42,18 +42,22 @@
             this.VendedorIdnumericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.NombrestextBox1 = new System.Windows.Forms.TextBox();
             this.RetenciontextBox = new System.Windows.Forms.TextBox();
-            this.NombreserrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.SueldoerrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.PorcientoerrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.SueldotextBox = new System.Windows.Forms.NumericUpDown();
             this.PorcientotextBox = new System.Windows.Forms.NumericUpDown();
+            this.MetasDataGridView = new System.Windows.Forms.DataGridView();
+            this.ButtonRemoverFila = new System.Windows.Forms.Button();
+            this.MetaComboBox = new System.Windows.Forms.ComboBox();
+            this.ButtonRegistrarMeta = new System.Windows.Forms.Button();
+            this.ButtonAgregarCuota = new System.Windows.Forms.Button();
+            this.CuotaNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VendedorIdnumericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NombreserrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SueldoerrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PorcientoerrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SueldotextBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PorcientotextBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MetasDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CuotaNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBuscar
@@ -76,7 +80,7 @@
             this.groupBox1.Controls.Add(this.btnGuargar);
             this.groupBox1.Controls.Add(this.btnNuevo);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Location = new System.Drawing.Point(0, 270);
+            this.groupBox1.Location = new System.Drawing.Point(3, 580);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(376, 66);
             this.groupBox1.TabIndex = 39;
@@ -88,7 +92,7 @@
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Image = global::PrimerParcialAplicada.Properties.Resources.delete;
-            this.btnEliminar.Location = new System.Drawing.Point(277, 6);
+            this.btnEliminar.Location = new System.Drawing.Point(280, 6);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 60);
             this.btnEliminar.TabIndex = 2;
@@ -197,17 +201,9 @@
             this.RetenciontextBox.Size = new System.Drawing.Size(190, 22);
             this.RetenciontextBox.TabIndex = 58;
             // 
-            // NombreserrorProvider
+            // errorProvider
             // 
-            this.NombreserrorProvider.ContainerControl = this;
-            // 
-            // SueldoerrorProvider
-            // 
-            this.SueldoerrorProvider.ContainerControl = this;
-            // 
-            // PorcientoerrorProvider
-            // 
-            this.PorcientoerrorProvider.ContainerControl = this;
+            this.errorProvider.ContainerControl = this;
             // 
             // SueldotextBox
             // 
@@ -259,11 +255,95 @@
             0});
             this.PorcientotextBox.ValueChanged += new System.EventHandler(this.PorcientotextBox_ValueChanged);
             // 
+            // MetasDataGridView
+            // 
+            this.MetasDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MetasDataGridView.Location = new System.Drawing.Point(5, 287);
+            this.MetasDataGridView.Name = "MetasDataGridView";
+            this.MetasDataGridView.Size = new System.Drawing.Size(374, 257);
+            this.MetasDataGridView.TabIndex = 62;
+            // 
+            // ButtonRemoverFila
+            // 
+            this.ButtonRemoverFila.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonRemoverFila.FlatAppearance.BorderSize = 0;
+            this.ButtonRemoverFila.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonRemoverFila.Image = global::PrimerParcialAplicada.Properties.Resources.delete;
+            this.ButtonRemoverFila.Location = new System.Drawing.Point(9, 550);
+            this.ButtonRemoverFila.Name = "ButtonRemoverFila";
+            this.ButtonRemoverFila.Size = new System.Drawing.Size(30, 30);
+            this.ButtonRemoverFila.TabIndex = 63;
+            this.ButtonRemoverFila.UseVisualStyleBackColor = false;
+            // 
+            // MetaComboBox
+            // 
+            this.MetaComboBox.FormattingEnabled = true;
+            this.MetaComboBox.Location = new System.Drawing.Point(12, 243);
+            this.MetaComboBox.Name = "MetaComboBox";
+            this.MetaComboBox.Size = new System.Drawing.Size(99, 21);
+            this.MetaComboBox.TabIndex = 64;
+            // 
+            // ButtonRegistrarMeta
+            // 
+            this.ButtonRegistrarMeta.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonRegistrarMeta.FlatAppearance.BorderSize = 0;
+            this.ButtonRegistrarMeta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonRegistrarMeta.Image = global::PrimerParcialAplicada.Properties.Resources._new;
+            this.ButtonRegistrarMeta.Location = new System.Drawing.Point(117, 243);
+            this.ButtonRegistrarMeta.Name = "ButtonRegistrarMeta";
+            this.ButtonRegistrarMeta.Size = new System.Drawing.Size(29, 21);
+            this.ButtonRegistrarMeta.TabIndex = 65;
+            this.ButtonRegistrarMeta.UseVisualStyleBackColor = true;
+            this.ButtonRegistrarMeta.Click += new System.EventHandler(this.ButtonRegistrarMeta_Click);
+            // 
+            // ButtonAgregarCuota
+            // 
+            this.ButtonAgregarCuota.BackColor = System.Drawing.Color.Transparent;
+            this.ButtonAgregarCuota.FlatAppearance.BorderSize = 0;
+            this.ButtonAgregarCuota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonAgregarCuota.Image = global::PrimerParcialAplicada.Properties.Resources._new;
+            this.ButtonAgregarCuota.Location = new System.Drawing.Point(283, 244);
+            this.ButtonAgregarCuota.Name = "ButtonAgregarCuota";
+            this.ButtonAgregarCuota.Size = new System.Drawing.Size(29, 21);
+            this.ButtonAgregarCuota.TabIndex = 67;
+            this.ButtonAgregarCuota.UseVisualStyleBackColor = true;
+            this.ButtonAgregarCuota.Click += new System.EventHandler(this.ButtonAgregarCuota_Click);
+            // 
+            // CuotaNumericUpDown
+            // 
+            this.CuotaNumericUpDown.DecimalPlaces = 2;
+            this.CuotaNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CuotaNumericUpDown.Location = new System.Drawing.Point(151, 243);
+            this.CuotaNumericUpDown.Maximum = new decimal(new int[] {
+            90000000,
+            0,
+            0,
+            0});
+            this.CuotaNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.CuotaNumericUpDown.Name = "CuotaNumericUpDown";
+            this.CuotaNumericUpDown.Size = new System.Drawing.Size(126, 22);
+            this.CuotaNumericUpDown.TabIndex = 68;
+            this.CuotaNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // rRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(381, 336);
+            this.ClientSize = new System.Drawing.Size(381, 641);
+            this.Controls.Add(this.CuotaNumericUpDown);
+            this.Controls.Add(this.ButtonAgregarCuota);
+            this.Controls.Add(this.ButtonRegistrarMeta);
+            this.Controls.Add(this.MetaComboBox);
+            this.Controls.Add(this.ButtonRemoverFila);
+            this.Controls.Add(this.MetasDataGridView);
             this.Controls.Add(this.PorcientotextBox);
             this.Controls.Add(this.SueldotextBox);
             this.Controls.Add(this.RetenciontextBox);
@@ -280,11 +360,11 @@
             this.Text = "Registro";
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.VendedorIdnumericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NombreserrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SueldoerrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PorcientoerrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SueldotextBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PorcientotextBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MetasDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CuotaNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,10 +384,14 @@
         private System.Windows.Forms.NumericUpDown VendedorIdnumericUpDown1;
         private System.Windows.Forms.TextBox NombrestextBox1;
         private System.Windows.Forms.TextBox RetenciontextBox;
-        private System.Windows.Forms.ErrorProvider NombreserrorProvider;
-        private System.Windows.Forms.ErrorProvider SueldoerrorProvider;
-        private System.Windows.Forms.ErrorProvider PorcientoerrorProvider;
+        private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.NumericUpDown PorcientotextBox;
         private System.Windows.Forms.NumericUpDown SueldotextBox;
+        private System.Windows.Forms.ComboBox MetaComboBox;
+        private System.Windows.Forms.Button ButtonRemoverFila;
+        private System.Windows.Forms.DataGridView MetasDataGridView;
+        private System.Windows.Forms.Button ButtonAgregarCuota;
+        private System.Windows.Forms.Button ButtonRegistrarMeta;
+        private System.Windows.Forms.NumericUpDown CuotaNumericUpDown;
     }
 }

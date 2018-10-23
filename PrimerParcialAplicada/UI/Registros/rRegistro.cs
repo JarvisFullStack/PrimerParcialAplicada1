@@ -14,9 +14,28 @@ namespace PrimerParcialAplicada.UI.Registros
 {
     public partial class rRegistro : Form
     {
+        public List<MetaDetalle> Detalle;
         public rRegistro()
         {
             InitializeComponent();
+            Detalle = new List<MetaDetalle>();
+            LlenaComboBox();
+        }
+
+        public void LlenaComboBox()
+        {
+            RepositorioBase<Meta> repositorio = new RepositorioBase<Meta>();
+            List<Meta> lista = repositorio.GetList(x=>true);
+            MetaComboBox.DataSource = lista;
+            MetaComboBox.ValueMember = "MetaId";
+            MetaComboBox.DisplayMember = "Descripcion";
+        }
+
+        public void CargarGrid()
+        {
+            MetasDataGridView.DataSource = null;
+            MetasDataGridView.DataSource = Detalle;
+
         }
 
         static bool pasoSueldo = true;
@@ -25,9 +44,8 @@ namespace PrimerParcialAplicada.UI.Registros
         //Inicio de metodos de soporte
         private void LimpiarProvider()
         {
-            NombreserrorProvider.Clear();
-            PorcientoerrorProvider.Clear();
-            SueldoerrorProvider.Clear();
+            errorProvider.Clear();
+       
         }
         private void LimpiarCampos()
         {
@@ -37,6 +55,7 @@ namespace PrimerParcialAplicada.UI.Registros
             SueldotextBox.Text = Convert.ToString(0);
             PorcientotextBox.Text = Convert.ToString(0.0);
             RetenciontextBox.Text = Convert.ToString(0.0);
+            MetasDataGridView.DataSource = null;
         }
 
         private Vendedor LlenarClase()
@@ -47,6 +66,7 @@ namespace PrimerParcialAplicada.UI.Registros
             vendedor.Sueldo = Convert.ToDouble(SueldotextBox.Value);
             vendedor.Porciento = Convert.ToDouble(PorcientotextBox.Value);
             vendedor.Retencion = Convert.ToDouble(RetenciontextBox.Text);
+            vendedor.Detalles = Detalle;
             return vendedor;
         }
 
@@ -57,18 +77,18 @@ namespace PrimerParcialAplicada.UI.Registros
             {
                 if (string.IsNullOrWhiteSpace(NombrestextBox1.Text))
                 {
-                    NombreserrorProvider.SetError(NombrestextBox1, "Debe llenar este campo");
+                    errorProvider.SetError(NombrestextBox1, "Debe llenar este campo");
                     MessageBox.Show("El campo nombre debe llenarse", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 if ((SueldotextBox.Value) == 0)
                 {
-                    NombreserrorProvider.SetError(SueldotextBox, "Debe llenar este campo");
+                    errorProvider.SetError(SueldotextBox, "Debe llenar este campo");
                     MessageBox.Show("El campo Sueldo debe llenarse", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 if ((PorcientotextBox.Value) == 0)
                 {
-                    NombreserrorProvider.SetError(PorcientotextBox, "Debe llenar este campo");
+                    errorProvider.SetError(PorcientotextBox, "Debe llenar este campo");
                     MessageBox.Show("El campo Porciento Retencion debe llenarse", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 paso = false;
@@ -84,6 +104,9 @@ namespace PrimerParcialAplicada.UI.Registros
             SueldotextBox.Value = Convert.ToDecimal(vendedor.Sueldo);
             PorcientotextBox.Value = Convert.ToDecimal(vendedor.Porciento);
             RetenciontextBox.Text = Convert.ToString(vendedor.Retencion);
+            vendedor.Detalles.Count();
+            Detalle = vendedor.Detalles;
+            CargarGrid();
         }
 
         //fin de metodos de soporte
@@ -101,6 +124,9 @@ namespace PrimerParcialAplicada.UI.Registros
         private void btnGuargar_Click(object sender, EventArgs e)
         {
             bool paso = false;
+            VendedorRepositorio repositorio = new VendedorRepositorio();
+
+            //RepositorioBase<Vendedor> repositorio = new RepositorioBase<Vendedor>();
             if (ValidarGuardar())
             {
                 Vendedor vendedor = LlenarClase();
@@ -115,12 +141,12 @@ namespace PrimerParcialAplicada.UI.Registros
 
                 if (id == 0)
                 {
-                    paso = VendedorBLL.Guardar(vendedor);
+                    paso = repositorio.Guardar(vendedor);
 
                 }
                 else
                 {
-                    paso = VendedorBLL.Modificar(vendedor);
+                    paso = repositorio.Modificar(vendedor);
                 }
 
                 if (paso)
@@ -148,8 +174,9 @@ namespace PrimerParcialAplicada.UI.Registros
             int id = (int)VendedorIdnumericUpDown1.Value;
             if (id > 0)
             {
-                Vendedor vendedor = VendedorBLL.Buscar(id);
-                paso = VendedorBLL.Eliminar(id);
+                RepositorioBase<Vendedor> repositorio = new RepositorioBase<Vendedor>();
+                Vendedor vendedor = repositorio.Buscar(id);
+                paso = repositorio.Eliminar(id);
                 if (paso)
                 {
                     MessageBox.Show("Registro : " + vendedor.Nombres + " Eliminado Correctamente!");
@@ -176,7 +203,8 @@ namespace PrimerParcialAplicada.UI.Registros
             int id = (int)VendedorIdnumericUpDown1.Value;
             if (id > 0)
             {
-                Vendedor vendedor = VendedorBLL.Buscar(id);
+                RepositorioBase<Vendedor> repositorio = new RepositorioBase<Vendedor>();
+                Vendedor vendedor = repositorio.Buscar(id);
                 if (vendedor != null)
                 {
                     LlenarCampos(vendedor);
@@ -271,6 +299,32 @@ namespace PrimerParcialAplicada.UI.Registros
             porciento /= 100;
             double retencion = (sueldo * porciento);
             RetenciontextBox.Text = Convert.ToString(retencion);
+        }
+
+        private void ButtonRegistrarMeta_Click(object sender, EventArgs e)
+        {
+            rMeta registroMeta = new rMeta();
+            registroMeta.Show();
+            LlenaComboBox();
+        }
+
+        private void ButtonAgregarCuota_Click(object sender, EventArgs e)
+        {
+            if(!String.IsNullOrWhiteSpace(NombrestextBox1.Text))
+            {
+                MetaDetalle detalle = new MetaDetalle();
+                detalle.Cuota = Convert.ToDouble(CuotaNumericUpDown.Value);
+                detalle.MetaId = (int)MetaComboBox.SelectedValue;
+                detalle.VendedorId = (int)VendedorIdnumericUpDown1.Value;
+                Detalle.Add(detalle);
+                
+                CargarGrid();
+            }
+            else
+            {
+                MessageBox.Show("Error! Debe especificar un vendedor previamente...");
+            }
+          
         }
     }
 }
