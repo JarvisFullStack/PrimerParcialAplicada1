@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PrimerParcialAplicada.BLL
 {
@@ -41,6 +42,7 @@ namespace PrimerParcialAplicada.BLL
 
         public override bool Modificar(Vendedor entity)
         {
+           
             bool paso = false;
             
             try
@@ -49,10 +51,12 @@ namespace PrimerParcialAplicada.BLL
                 var Anterior = new VendedorRepositorio().Buscar(entity.VendedorId);
                 if (Anterior.Detalles.Count() > entity.Detalles.Count())
                 {
+                    
                     foreach (var item in Anterior.Detalles)
                     {
                         if (!entity.Detalles.Exists(d => d.MetaDetalleId == item.MetaDetalleId))
                         {
+                           
                             Meta meta = MetaBLL.Buscar(item.MetaId);
                             meta.Cuota += item.Cuota;
                             _contexto.Entry(item).State = EntityState.Deleted;
@@ -65,26 +69,31 @@ namespace PrimerParcialAplicada.BLL
                 Antes.Detalles.Count();
                 for (int i = 0; i < entity.Detalles.Count(); i++)
                 {
+                    
 
                     EntityState estado = (entity.Detalles[i].MetaDetalleId == 0) ? EntityState.Added : EntityState.Modified;
                     Meta meta = MetaBLL.Buscar(entity.Detalles[i].MetaId);
 
                     if (estado == EntityState.Modified)
                     {
+                        
                         if (Antes.Detalles[i].Cuota > entity.Detalles[i].Cuota)
                         {
+                            
                             meta.Cuota -= meta.Cuota - entity.Detalles[i].Cuota;
                         }
                         else if (Antes.Detalles[i].Cuota < entity.Detalles[i].Cuota)
                         {
                             meta.Cuota += entity.Detalles[i].Cuota - meta.Cuota;
+                           
                         }
 
 
                     }
                     else if (estado == EntityState.Added)
                     {
-                        meta.Cuota += entity.Detalles[i].Cuota;
+                        //Esto era que estaba malo porque estaba sumando en lugar de restar -_-"
+                        meta.Cuota -= entity.Detalles[i].Cuota;
                     }
 
                     MetaBLL.Modificar(meta);
@@ -105,6 +114,21 @@ namespace PrimerParcialAplicada.BLL
                 _contexto.Dispose();
             }
             return paso;
+        }
+
+        public override Vendedor Buscar(int id)
+        {
+            Vendedor vendedor = new Vendedor();
+            Contexto contexto = new Contexto();
+            try
+            {
+                vendedor = contexto.Vendedor.Find(id);
+                vendedor.Detalles.Count();
+                contexto.Dispose();
+            }
+            catch (Exception) { throw; }
+
+            return vendedor;
         }
     }
 }

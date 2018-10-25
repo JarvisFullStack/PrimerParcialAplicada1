@@ -17,7 +17,7 @@ namespace PrimerParcialAplicada.Entidades
         public double Porciento { get; set; }
         public DateTime Fecha { get; set; }
 
-        public List<MetaDetalle> Detalles;
+        public virtual List<MetaDetalle> Detalles { get; set; }
 
         public Vendedor()
         {

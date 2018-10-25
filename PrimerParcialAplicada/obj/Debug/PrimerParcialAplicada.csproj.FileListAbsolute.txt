@@ -5,7 +5,6 @@ C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\bin\
 C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\bin\Debug\EntityFramework.xml
 C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\Debug\PrimerParcialAplicada.csprojAssemblyReference.cache
 C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\Debug\PrimerParcialAplicada.MainForm.resources
 C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\Debug\PrimerParcialAplicada.Properties.Resources.resources
 C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\Debug\PrimerParcialAplicada.UI.Consultas.cVendedor.resources
@@ -16,3 +15,4 @@ C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\
 C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\Debug\PrimerParcialAplicada.exe
 C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\Debug\PrimerParcialAplicada.pdb
 C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\Debug\PrimerParcialAplicada.UI.Registros.rMeta.resources
+C:\Users\JarvisXxX\Source\Repos\PrimerParcialAplicada\PrimerParcialAplicada\obj\Debug\PrimerParcialAplicada.csprojAssemblyReference.cache

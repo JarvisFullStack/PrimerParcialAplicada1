@@ -55,6 +55,7 @@ namespace PrimerParcialAplicada.UI.Registros
             SueldotextBox.Text = Convert.ToString(0);
             PorcientotextBox.Text = Convert.ToString(0.0);
             RetenciontextBox.Text = Convert.ToString(0.0);
+            CuotaNumericUpDown.Value = 1;
             MetasDataGridView.DataSource = null;
         }
 
@@ -203,15 +204,13 @@ namespace PrimerParcialAplicada.UI.Registros
             int id = (int)VendedorIdnumericUpDown1.Value;
             if (id > 0)
             {
-                RepositorioBase<Vendedor> repositorio = new RepositorioBase<Vendedor>();
-                Vendedor vendedor = repositorio.Buscar(id);
+                
+                Vendedor vendedor = VendedorBLL.Buscar(id);
                 if (vendedor != null)
                 {
                     LlenarCampos(vendedor);
+                    MessageBox.Show("Cantidad de registros: "+vendedor.Detalles.Count);
                     MessageBox.Show("Registro encontrado");
-
-
-
                 }
                 else
                 {

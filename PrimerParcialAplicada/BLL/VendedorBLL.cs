@@ -77,6 +77,10 @@ namespace PrimerParcialAplicada.BLL
             try
             {
                 vendedor = contexto.Vendedor.Find(id);
+                if (vendedor != null)
+                {
+                    vendedor.Detalles.Count();
+                }
                 contexto.Dispose();
             }
             catch (Exception) { throw; }
